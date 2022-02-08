@@ -65,8 +65,8 @@ def filedownload(df):
     b64 = base64.b64encode(csv.encode()).decode()  # strings <-> bytes conversions
     href = f'<a href="data:file/csv;base64,{b64}" download="playerstats.csv">Download CSV File</a>'
     return href
-
 st.markdown(filedownload(df_selected_team), unsafe_allow_html=True)
+    # doesn't work
 
 download= st.button('Download CSV File')
 if download:
@@ -78,7 +78,11 @@ if download:
   st.markdown(href,
               #linko,
               unsafe_allow_html=True)
+    # doesn't work either
 
+###################################
+# Working download button
+###############################
 @st.cache
 def convert_df(df):
      # IMPORTANT: Cache the conversion to prevent computation on every rerun
@@ -90,7 +94,8 @@ st.download_button(
     data= csv, 
     file_name='xd.csv',
     mime='text/csv')
-    
+   
+####################################
 # Heatmap
 if st.checkbox('Intercorrelation Heatmap'):
     st.header('Intercorrelation Matrix Heatmap')
