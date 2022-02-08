@@ -71,10 +71,13 @@ st.markdown(filedownload(df_selected_team), unsafe_allow_html=True)
 download= st.button('Download CSV File')
 if download:
   'Download Started!'
-  csv = df_selected_team.to_csv(index=False)
-  b64 = base64.b64encode(csv.encode()).decode()  # some strings
+  csv = df_selected_team.to_csv(index=False).encode()
+  b64 = base64.b64encode(csv).decode()  # some strings
   linko= f'<a href="data:file/csv;base64,{b64}" download="myfilename.csv">Download csveee file</a>'
-  st.markdown(linko, unsafe_allow_html=True)
+  href = f'Download CSV File'
+  st.markdown(href, unsafe_allow_html=True)
+
+st.markdown(href, unsafe_allow_html=True)
 
 # Heatmap
 if st.checkbox('Intercorrelation Heatmap'):
