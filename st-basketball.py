@@ -47,8 +47,7 @@ selected_team = st.sidebar.multiselect('Team', sorted_unique_team, sorted_unique
     # 3rd argument: Default displayed values in list. 
 
 # Sidebar - Position selection
-# unique_pos = ['C','PF','SF','PG','SG']
-unique_pos = sorted(playerstats['Pos'].unique())
+unique_pos = ['C','PF','SF','PG','SG']
 selected_pos = st.sidebar.multiselect('Position', unique_pos, unique_pos)
 
 # Filtering data
@@ -69,8 +68,15 @@ def filedownload(df):
 
 st.markdown(filedownload(df_selected_team), unsafe_allow_html=True)
 
+if download:
+  'Download Started!'
+  csv = df_selected_team.to_csv(index=False)
+  b64 = base64.b64encode(csv.encode()).decode()  # some strings
+  linko= f'<a href="data:file/csv;base64,{b64}" download="myfilename.csv">Download csveee file</a>'
+  st.markdown(linko, unsafe_allow_html=True)
+
 # Heatmap
-if st.button('Intercorrelation Heatmap'):
+if st.checkbox('Intercorrelation Heatmap'):
     st.header('Intercorrelation Matrix Heatmap')
     df_selected_team.to_csv('output.csv',index=False)
     df = pd.read_csv('output.csv')
