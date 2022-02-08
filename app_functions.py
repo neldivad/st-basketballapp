@@ -1,5 +1,7 @@
 import plotly.express as px
 import plotly.graph_objects as go
+import numpy as np
+import pandas as pd
 
 def make_corr_map(data, title, zmin=-1, zmax=1, height=600, width= 800):
     """
