@@ -68,6 +68,7 @@ def filedownload(df):
 
 st.markdown(filedownload(df_selected_team), unsafe_allow_html=True)
 
+download= st.button('Download CSV File')
 if download:
   'Download Started!'
   csv = df_selected_team.to_csv(index=False)
